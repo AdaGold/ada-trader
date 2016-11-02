@@ -4,6 +4,7 @@
   "description": "Ada's baseline for front-end JS projects using webpack, babel, and jasmine",
   "main": "./bin/app.bundle.js",
   "scripts": {
+    "start": "webpack-dev-server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Ada Developers Academy <contact@adadevelopersacademy.org>",
