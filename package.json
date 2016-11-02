@@ -14,6 +14,8 @@
   },
   "homepage": "https://github.com/AdaGold/js-baseline#readme",
   "devDependencies": {
+    "babel-core": "^6.18.2",
+    "babel-preset-es2015": "^6.18.0",
     "webpack": "^1.13.3"
   }
 }
