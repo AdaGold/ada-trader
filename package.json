@@ -12,5 +12,8 @@
   "bugs": {
     "url": "https://github.com/AdaGold/js-baseline/issues"
   },
-  "homepage": "https://github.com/AdaGold/js-baseline#readme"
+  "homepage": "https://github.com/AdaGold/js-baseline#readme",
+  "devDependencies": {
+    "webpack": "^1.13.3"
+  }
 }
