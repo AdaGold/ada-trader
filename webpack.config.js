@@ -1,4 +1,5 @@
 var webpack = require('webpack');
+var DashboardPlugin = require('webpack-dashboard/plugin');
 
 module.exports = {
   entry: ['babel-polyfill', './src/app.js'],
@@ -23,6 +24,7 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin({
       multiStep: true
-    })
+    }),
+    new DashboardPlugin()
   ]
 };
