@@ -14,6 +14,7 @@ module.exports = {
       loader: 'babel-loader'
     }]
   },
+  devtool: 'source-map',
   devServer: {
     contentBase: './build',
     historyApiFallback: true,
