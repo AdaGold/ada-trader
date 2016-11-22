@@ -1,7 +1,7 @@
 {
-  "name": "backbone-baseline",
+  "name": "ada-trader",
   "version": "1.0.0",
-  "description": "Ada's baseline for Backbone.js projects using jQuery, webpack, babel, and jasmine",
+  "description": "Front-end Backbone.js application for trading Ada capstone project stocks",
   "main": "./bin/app.bundle.js",
   "scripts": {
     "start": "webpack-dashboard -- webpack-dev-server",
@@ -9,11 +9,11 @@
   },
   "author": "Ada Developers Academy <contact@adadevelopersacademy.org>",
   "license": "MIT",
-  "repository": "AdaGold/backbone-baseline",
+  "repository": "AdaGold/ada-trader",
   "bugs": {
-    "url": "https://github.com/AdaGold/backbone-baseline/issues"
+    "url": "https://github.com/AdaGold/ada-trader/issues"
   },
-  "homepage": "https://github.com/AdaGold/backbone-baseline#readme",
+  "homepage": "https://github.com/AdaGold/ada-trader#readme",
   "devDependencies": {
     "babel-core": "^6.18.2",
     "babel-loader": "^6.2.7",

@@ -1,9 +1,14 @@
+import $ from 'jquery';
 import Application from 'app/models/application';
 import ApplicationView from 'app/views/application_view';
 
-var application = new Application();
+$(document).ready(function() {
+  var application = new Application();
 
-var appView = new ApplicationView({
-  el: '#mount',
-  model: application
+  var appView = new ApplicationView({
+    el: '#mount',
+    model: application
+  });
+
+  appView.render();
 });
