@@ -6,9 +6,33 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/foundation.css">
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Condensed|Rubik+Mono+One">
   </head>
   <body>
-    <div id="application"></div>
+    <div id="application">
+      <header>
+        <h1>Ada Trader</h1>
+      </header>
+      <div class="row column large-8 large-offset-2 small-12">
+        <ul class="quotes row"></ul>
+      </div>
+    </div>
+
+    <script type="text/template" id="tmpl-quote-view">
+      <li class="large-4 small-12 columns">
+        <div class="quote">
+          <div class="row">
+            <h3 class="symbol large-6 small-6 columns"><%- symbol %></h3>
+            <div class="large-6 small-6 columns">
+              <h4 class="price">$<%- price.toFixed(2) %></h4>
+              <button class="btn-sell tiny alert button">Buy</button>
+              <button class="btn-buy tiny success button">Sell</button>
+            </div>
+          </div>
+        </div>
+      </li>
+    </script>
     <script src="/app.bundle.js" charset="utf-8"></script>
   </body>
 </html>
