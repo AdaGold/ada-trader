@@ -29,7 +29,7 @@ In this wave we will build our first Backbone view, which will display the name 
 1. The `QuoteView` should:
   * Have an `initialize` function that should:
     * Receive and store a JavaScript object with quote data (`symbol` and `price`). See [Example Stocks](#example-stocks) for inspiration.
-    * Compile an Underscore template using the script named `tmpl-quote-view` (which is already defined in `index.html`).
+    * Compile an Underscore template using the script named `quote-template` (which is already defined in `index.html`).
   * Have a `render` function that should:
     * Use the compiled template to render HTML for a single quote, using the quote data stored by `initialize`.
 
@@ -63,6 +63,8 @@ In this wave we will extend our `QuoteView` class to support clicking on the Buy
   * Have a function that runs when the `click` event happens on the sell button. This function should:
     * Decrease the stocks' price by a fixed amount (say, $1.00).
     * Re-render the view so that the new price is displayed to the user.
+
+2. The `Quote` model should have unit tests written in Jasmine for any custom methods you add to it.
 
 #### Optional Enhancements
 The optional enhancement for this wave is to implement a simulation of the broader stock market. To make this simulation as true-to-life as possible, we'll be randomly moving the stock price up or down by a small amount, once per second. In order to achieve this your application should be updated so that:

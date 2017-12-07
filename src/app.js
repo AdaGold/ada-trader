@@ -6,7 +6,7 @@ const simulate = function(quote) {
   // Calculate a random price movement
   const maxChange = 1.00;
   const minChange = 0.00;
-  var change = _.random(minChange * 10, maxChange * 10) / 10;
+  let change = _.random(minChange * 10, maxChange * 10) / 10;
 
   // Decide if the change is positive or negative
   if(_.random(0,1) === 1) {
@@ -18,7 +18,7 @@ const simulate = function(quote) {
 };
 
 $(document).ready(function() {
-  var appView = new ApplicationView({
+  const appView = new ApplicationView({
     el: '#application'
   });
 
