@@ -1,5 +1,5 @@
 import 'foundation-sites/dist/css/foundation.css';
-import './css/style.css';
+import './css/app.css';
 
 import $ from 'jquery';
 import _ from 'underscore';
