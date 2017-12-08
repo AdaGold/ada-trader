@@ -1,6 +1,9 @@
+import 'foundation-sites/dist/css/foundation.css';
+import './css/style.css';
+
 import $ from 'jquery';
 import _ from 'underscore';
-import ApplicationView from 'app/views/application_view';
+import ApplicationView from './views/application_view';
 
 const simulate = function(quote) {
   // Calculate a random price movement
