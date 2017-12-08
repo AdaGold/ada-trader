@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Ada Trader</title>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Condensed|Rubik+Mono+One">
+  </head>
+  <body>
+    <main id="application">
+      <header class="row">
+        <h1>Ada Trader</h1>
+      </header>
+      <div class="row quote-control-buttons">
+        <button class="btn-sell alert button">Buy All</button>
+        <button class="btn-buy success button">Sell All</button>
+      </div>
+
+      <div id="quotes-container" class="row column large-8 large-offset-2 small-12">
+        <h2>Quotes</h2>
+        <ul id="quotes" class="quotes"></ul>
+      </div>
+    </main>
+
+    <script type="text/template" id="quote-template">
+      <!-- The provided styles assume that you will insert this template
+      within an element with the class "quote" applied -->
+      <!-- <li class="quote"> -->
+      <div class="row small-12 columns">
+        <h3 class="symbol"><%- symbol %></h3>
+        <h3 class="price">$<%- price.toFixed(2) %></h3>
+        <div>
+          <button class="btn-sell alert button">Buy</button>
+          <button class="btn-buy success button">Sell</button>
+        </div>
+      </div>
+      <!-- </li> -->
+    </script>
+    <script src="/app.bundle.js" charset="utf-8"></script>
+  </body>
+</html>
