@@ -1,4 +1,4 @@
-import 'foundation-sites/dist/css/foundation.css';
+import 'foundation-sites/dist/foundation.css';
 import './css/app.css';
 
 import $ from 'jquery';
@@ -21,12 +21,6 @@ const simulate = function(quote) {
 };
 
 $(document).ready(function() {
-  const appView = new ApplicationView({
-    el: '#application'
-  });
-
-  appView.render();
-
   setInterval(function() {
     // Call simulate() on each quote in the ApplicationView
   }, 1000);

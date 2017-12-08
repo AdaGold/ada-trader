@@ -20,8 +20,13 @@ header {
   text-align: center;
 }
 
-.quote-control-buttons {
-  text-align: center;
+.workspace {
+  height: 75vh;
+}
+
+.quotes-list-container, .trades-list-container {
+  height: 100%;
+  overflow: scroll;
 }
 
 .quotes {
@@ -49,9 +54,20 @@ header {
   margin-left: 10px;
 }
 
+.trades-container {
+  height: 100%;
+
+  background-color: darkgray;
+  color: white;
+}
+
 /*
 Foundation Overrides
 */
+
+.row {
+  max-width: 100%;
+}
 
 .button {
   text-transform: uppercase;
