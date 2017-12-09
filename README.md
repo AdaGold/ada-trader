@@ -1,9 +1,8 @@
 # Ada Trader
-Backbone application for simulated trading with real-time stock quotes for Ada capstone projects.
+In this project you will create the Ada Trader platform for real-time stock trading. All trading will happen with fake stocks that represent previous Ada capstone projects, and will be connected to a "real-time" simulation that randomly adjusts the prices for each stock over time.
 
 // TODO: add gif
 
-Our Ada Trader app will display a list of stock quotes with their prices. The user will be able to buy and sell these, which should affect their individual prices. There is also going to be a "real-time" simulation, which adjusts and updates the prices of these quotes over time.
 
 ## Setup
 ### Starting project
