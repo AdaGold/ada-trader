@@ -94,36 +94,71 @@ As a user, when I:
 #### Advice
 To keep things simple, this wave can be completed without creating any new Backbone Models, Collections, or Views. Because the trade history is "static" (the data associated with each trade will never change), we can implement this behavior entirely through events and using jQuery to update the DOM.
 
-### Wave 3 - Creating Orders
-  - Have a form that can create an Order with symbol, price, and "buy if price is lower than" or "sell if price is higher than" button
-  - Show a list of these orders
-  - If these conditions are met, then destroy the order
-  - use the event bus
+### Wave 3 - Trading with Limit Orders
+#### Trading Overview
+When traders become more advanced in their profession they begin to find that trading only with market orders can be tedious. It can be risky to click "Buy" when the quote has one price and find that your order executed after the price had increased substantially, due to other market participants. And vigilantly watching the quotes ticker to wait for an ideal "target" price to be hit might take up your whole day!
 
-<!-- In this wave we will extend our `QuoteView` class to support clicking on the Buy and Sell buttons for each quote. In order to achieve this, your application should be updated so that:
+For this reason advanced traders rely heavily on more advanced order types, primarily the "limit order". A limit order is similar to a market order, with two major exceptions: the limit order includes a "target price", and it remains "open" until cancelled by the trader or the target price is reached. When the current price of the stock reaches the order's target price then the order is executed (creating a new trade), and the order disappears.
 
-1. The `QuoteView` class should:
-  * Have an `events` property that defines two handlers for the `click` event, one for each `button` in the quote template.
-  * Have a function that runs when the `click` event happens on the buy button. This function should:
-    * Increase the stock's price by $1.00.
-    * Re-render the view so that the new price is displayed to the user.
-  * Have a function that runs when the `click` event happens on the sell button. This function should:
-    * Decrease the stocks' price by $1.00.
-    * Re-render the view so that the new price is displayed to the user.
-1. The `Quote` model should have unit tests written in Jasmine for any custom methods you add to it. -->
+#### Interface Details
+In the Ada Trader interface the order system can be found in the bottom panel. There are two sections to this panel: the "open orders" list and the order entry form.
 
-<!-- ### Wave 4 - Events: Simulate
-This wave will implement a simulation of the broader stock market. To make this simulation as true-to-life as possible, we'll be randomly moving the stock price up or down by a small amount, once per second. In `app.js`, we've provided the function `simulate` which does exactly that. In order to achieve this, your application should be updated so that:
+The right side of the bottom panel has a form for creating new limit orders. This form has a drop-down list of available stock symbols, a text input for the order's target price, and a Buy and Sell button to create the order.
 
-1. The `QuoteView` class should:
-  * Setup [an event listener](http://backbonejs.org/#Events-on) for a custom event named `change:price`. This should be done in the `initialize` function.
-  * Have a function that runs when the `change:price` event happens. This function should:
-    * Expect that a `change` parameter will be passed into it.
-    * Expect that the `change` parameter will be a number, positive OR negative.
-    * Add the `change` parameter onto the current stock price.
-    * Re-render the view so that the new price is displayed to the user.
-1. Something in the project should call the `simulate` function on each of the `QuoteView` instances.
+The left side of the bottom panel has a list of all open orders. Orders are listed with the oldest at the top. Each open order entry in the list includes the symbol being ordered, whether it is a buy or sell order, the target price, and a cancel button.
 
-You may find that you would rather move the `simulate` function out of `app.js`. Feel free to do so.
+#### User Stories
+As a user, I can:
+  - See a list of open orders in the left side of the bottom panel, including the:
+    - Symbol for each order
+    - Buy/Sell indicator for each order
+    - Target price for each order
+    - Cancel button for each order
+  - See an order entry form in the right side of the bottom panel, including the:
+    - Symbol selection drop-down, which lists all symbols shown in the quote ticker
+    - Target price input box
+    - Buy button
+    - Sell button
+  - Click the Cancel button on each order in the open orders list
+  - Click the Buy button in the order entry form
+  - Click the Sell button in the order entry form
 
-We do not expect you to write unit tests for the `simulate` function. -->
+As a user, when I:
+  - Click the Cancel button for an order:
+    - That order is removed from the open orders list
+    - That order will never execute
+  - Click Buy in the order entry form:
+    - If the target price is blank OR is **greater than** the current market price:
+      - That order is not created and (TODO: error display?)
+    - If the target price is **less than or equal** to the current market price:
+      - A new Buy order is added to the bottom of the open orders list, with the:
+        - Symbol from the the form
+        - Target price from the form
+  - Click Sell in the order entry form:
+    - If the target price is blank OR is **less than** the current market price:
+      - That order is not created and (TODO: error display?)
+    - If the target price is **greater than or equal to** the current market price:
+      - A new Sell order is added to the bottom of the open orders list, with the:
+        - Symbol from the the form
+        - Target price from the form
+
+Additionally, when:
+  - The price of a stock quote changes:
+    - If there are any open Sell orders in the open orders list, where the symbol matches the quote:
+      - Each order executes, in the same manner as though the user had clicked "Sell" on the quote
+      - Each order is removed from the open order list
+      - Each order will never execute again
+    - If there are any open Buy orders in the open orders list, where the symbol matches the quote:
+      - Each order executes, in the same manner as though the user had clicked "Buy" on the quote
+      - Each order is removed from the open order list
+      - Each order will never execute again
+
+#### Testing
+You should have tests for any validations your models have, as well as any custom functions that you create on those models. **Optional**: Write a test which verifies that limit orders are executed and destroyed when the relevant stock reaches the order's target price.
+
+#### Advice
+In order to get the list of symbols for the order entry form's drop-down, you may need to have that view access the quote collection.
+
+When removing a Backbone View from the page, that does not mean that the associated Model is gone! Be careful when cancelling an order, because an order that isn't shown on the page might still "hear" events that are triggered.
+
+The rules above for when an order can or cannot be created are a great place to use Backbone's model validation system! Make sure to include tests for those validations as well.
