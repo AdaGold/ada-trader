@@ -33,27 +33,34 @@ This project uses the same structure as BackTREK and is based on our [backbone b
 | `QuoteList` | `src/collections/quote_list.js` | This collection represents all of the quotes available on the trading platform. |
 | `Simulator` | `src/models/simulator.js` | This model handles the logic for simulating stock market activity by randomly shifting the price for each quote up or down each second. You will need to connect it to your `QuoteList` instance in `src/app.js`. |
 
-## Requirements
-### Wave 1 - Quotes, QuoteList, and Simulation
+## Project Requirements
+### Wave 1 - Trading with Market Orders
+#### Trading Overview
+In this wave you will implement the Backbone Views, events, and model logic to allow a user to trade stocks using "market orders". A market order is when a trader purchases or sells a stock at the _current_ price, and the order "executes" (actually becomes a trade) immediately.
 
-Render a Quote (with a symbol and price) and a QuoteList in the Quotes Section
-A Quote
-  - Will have a buy/sell button
-QuoteList
-  - Will hook up to the given simulator model, so that every second the prices of each quote update
+#### Interface Details
+In the Ada Trader interface market orders are created by clicking the Buy and Sell buttons next to each stock quote. When a user presses one of these buttons they are trading that stock at the price displayed at that moment.
 
-<!-- In this wave you should be able to render a single instance of a Quote, which will display the name (known as a symbol) and price for a single stock. In order to achieve this your application should at the very least:
+#### User Stories
+As a user, I can:
+  - See a list of quotes in the left side of the top panel, including the:
+    - Symbol for each quote
+    - Market price for each quote
+    - Buy button for each quote
+    - Sell button for each quote
+  - Click the Buy button associated with a quote
+  - Click the Sell button associated with a quote
+As a user, when I:
+  - Click the Buy button for a quote:
+    - That quote's market price increases by $1.00
+  - Click the Sell button for a quote:
+    - That quote's market price decreases by $1.00
 
-#### Primary Requirements
-1. Have a `Quote` extended from `Backbone.Model`
-1. Have a `QuoteView` extended from `Backbone.View`
-1. The `QuoteView` should:
-  * Have an `initialize` function that should:
-    * Receive and store a JavaScript object with quote data (`symbol` and `price`). See [Example Stocks](#example-stocks) for inspiration.
-    * Compile an Underscore template using the script with the id `quote-template` (which is already defined in `index.html`).
-  * Have a `render` function that should:
-    * Use the compiled template to render HTML for a single quote.
-1. When creating an instance of the `QuoteView`, it should be tied to an instance of the `Quote` model -->
+#### Tests
+Tests have been provided for the two custom functions that you will need to implement for this wave. In later waves you will need to write your own tests for any custom functions that you add to your models, as well as any validations you have.
+
+#### Advice
+Before the prices show on your stock quotes will begin to adjust over time, you will need to connect your quote collection to the simulator model -- check out the starter code in `src/app.js`.
 
 ### Wave 2 - Create and Render Trades after buying or selling a Quote
   - When a Quote is created and added to the QuoteList, it should create a Trade. The purpose of the Trades panel is to show a history of every transaction
