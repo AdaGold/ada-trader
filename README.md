@@ -27,13 +27,13 @@ To get started with the Ada Trader project follow these steps:
 1. `npm start`
 
 ### Project Baseline
-This project uses the same structure as BackTREK and is based on our [backbone baseline](https://github.com/AdaGold/backbone-baseline). The baseline for this project includes some model and collections that have already been implemented:
+This project uses the same structure as BackTREK and is based on our [backbone baseline](https://github.com/AdaGold/backbone-baseline). The baseline for this project includes some models and collections that have already been implemented:
 
 | Model | File | Purpose |
 |:------|:-----|:--------|
 | `Quote` | `src/models/quote.js` | This model represents an individual stock quote, and has attributes for:<br>• `symbol` - code name for the stock (e.g. AAPL)<br>• `price` - current price of the quote<br>You will add the ability to buy / sell a quote using custom functions. |
 | `QuoteList` | `src/collections/quote_list.js` | This collection represents all of the quotes available on the trading platform. |
-| `Simulator` | `src/models/simulator.js` | This model handles the logic for simulating stock market activity by randomly shifting the price for each quote up or down each second. You will need to connect it to your `QuoteList` instance in `src/app.js`. |
+| `Simulator` | `src/models/simulator.js` | This model handles the logic for simulating stock market activity by randomly shifting the price for each quote up or down each second within a range of -1.00 and +1.00. You will need to connect it to your `QuoteList` instance in `src/app.js`. |
 
 # Project Requirements
 ## Wave 1 - Trading with Market Orders
@@ -50,8 +50,6 @@ As a user, I can:
     - [Market price](#trading-vocabulary) for each quote
     - Buy button for each quote
     - Sell button for each quote
-  - Click the Buy button associated with a quote
-  - Click the Sell button associated with a quote
 As a user, when I:
   - Click the Buy button for a quote:
     - That quote's market price increases by $1.00
@@ -62,7 +60,7 @@ As a user, when I:
 Tests have been provided for the two custom functions that you will need to implement for this wave. In later waves you will need to write your own tests for any custom functions that you add to your models, as well as any validations you have.
 
 ### Advice
-Before the prices show on your stock quotes will begin to adjust over time, you will need to connect your quote collection to the simulator model -- check out the starter code in `src/app.js`.
+To see the prices on your stock quotes adjust over time, you will need to connect your quote collection to the simulator model -- check out the starter code in `src/app.js`.
 
 ## Wave 2 - Trade History
 ### Trading Overview
@@ -161,7 +159,7 @@ You should have tests for any validations your models have, as well as any custo
 ### Advice
 In order to get the list of symbols for the order entry form's drop-down, you may need to have that view access the quote collection.
 
-When removing a Backbone View from the page, that does not mean that the associated Model is gone! Be careful when cancelling an order, because an order that isn't shown on the page might still "hear" events that are triggered.
+When removing a Backbone View from the page, that does not mean that the associated Model is gone! Be careful when cancelling an order, because an order that isn't shown on the page might still "hear" events that are triggered. You may observe this bug if the trade history continues to update with transactions from "lingering" orders, even if the order is not rendered within the list of open orders.
 
 The rules above for when an order can or cannot be created are a great place to use Backbone's model validation system! Make sure to include tests for those validations as well.
 
