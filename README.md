@@ -14,15 +14,14 @@ To get started with the Ada Trader project follow these steps:
 1. `npm install`
 1. `npm start`
 
-### Project structure
-Consider some of the following files that we provide
+### Project Baseline
+This project uses the same structure as BackTREK and is based on our [backbone baseline](https://github.com/AdaGold/backbone-baseline). The baseline for this project includes some model and collections that have already been implemented:
 
-| File | Purpose |
-|:-----|:--------|
-| `src/app.js` | Main entry-point of the application. This file contains a function `simulate()`, which will be used in wave 4. |
-| `dist/index.html` | Static HTML & Underscore template script for the quote view. It makes some assumptions about what ids you may use to target, so be mindful of that. |
-| `dist/css/app.css` | Some basic styles. Besides the assumptions it makes to work with the provided `index.html`, it makes some assumptions about how you will add and render a single quote, so be mindful of that if you choose to use these styles. |
-| simulator |  |
+| Model | File | Purpose |
+|:------|:-----|:--------|
+| `Quote` | `src/models/quote.js` | This model represents an individual stock quote, and has attributes for:<br>• `symbol` - code name for the stock (e.g. AAPL)<br>• `price` - current price of the quote<br>You will add the ability to buy / sell a quote using custom functions. |
+| `QuoteList` | `src/collections/quote_list.js` | This collection represents all of the quotes available on the trading platform. |
+| `Simulator` | `src/models/simulator.js` | This model handles the logic for simulating stock market activity by randomly shifting the price for each quote up or down each second. You will need to connect it to your `QuoteList` instance in `src/app.js`. |
 
 ## Requirements
 ### Wave 1 - Quotes, QuoteList, and Simulation
