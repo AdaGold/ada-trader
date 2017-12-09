@@ -33,15 +33,15 @@ This project uses the same structure as BackTREK and is based on our [backbone b
 | `QuoteList` | `src/collections/quote_list.js` | This collection represents all of the quotes available on the trading platform. |
 | `Simulator` | `src/models/simulator.js` | This model handles the logic for simulating stock market activity by randomly shifting the price for each quote up or down each second. You will need to connect it to your `QuoteList` instance in `src/app.js`. |
 
-## Project Requirements
-### Wave 1 - Trading with Market Orders
-#### Trading Overview
+# Project Requirements
+## Wave 1 - Trading with Market Orders
+### Trading Overview
 In this wave you will implement the Backbone Views, events, and model logic to allow a user to trade stocks using "[market orders](#trading-vocabulary)". A market order is when a trader purchases or sells a stock at the _current_ price, and the order "executes" (actually becomes a trade) immediately.
 
-#### Interface Details
+### Interface Details
 In the Ada Trader interface market orders are created by clicking the Buy and Sell buttons next to each stock quote. When a user presses one of these buttons they are trading that stock at the price displayed at that moment.
 
-#### User Stories
+### User Stories
 As a user, I can:
   - See a list of quotes in the left side of the top panel, including the:
     - Symbol for each quote
@@ -56,20 +56,20 @@ As a user, when I:
   - Click the Sell button for a quote:
     - That quote's market price decreases by $1.00
 
-#### Tests
+### Tests
 Tests have been provided for the two custom functions that you will need to implement for this wave. In later waves you will need to write your own tests for any custom functions that you add to your models, as well as any validations you have.
 
-#### Advice
+### Advice
 Before the prices show on your stock quotes will begin to adjust over time, you will need to connect your quote collection to the simulator model -- check out the starter code in `src/app.js`.
 
-### Wave 2 - Trade History
-#### Trading Overview
+## Wave 2 - Trade History
+### Trading Overview
 When working as a stock trader it is important to know which trades you've made! This can be necessary for tax auditing and other regulatory purposes, as well as to determine the success you've had while trading. As developers it can also be a useful tool for debugging our trading platform.
 
-#### Interface Details
+### Interface Details
 In the Ada Trader interface the right side of the top panel lists a history of all trades made by the user. The most recent trades are listed at the top for increased visibility. Each trade listed in the history includes the symbol that was traded, whether it was bought or sold, and the price for that trade.
 
-#### User Stories
+### User Stories
 As a user, I can see:
   - A list of all completed trades in the right side of the top panel, including the:
     - Symbol for each trade
@@ -91,23 +91,23 @@ As a user, when I:
       - An indicator that the trade was a "sell"
       - The price from the quote associated with the Sell button _when the button was clicked_
 
-#### Advice
+### Advice
 To keep things simple, this wave can be completed without creating any new Backbone Models, Collections, or Views. Because the trade history is "static" (the data associated with each trade will never change), we can implement this behavior entirely through events and using jQuery to update the DOM.
 
-### Wave 3 - Trading with Limit Orders
-#### Trading Overview
+## Wave 3 - Trading with Limit Orders
+### Trading Overview
 When traders become more advanced in their profession they begin to find that trading only with market orders can be tedious. It can be risky to click "Buy" when the quote has one price and find that your order executed after the price had increased substantially, due to other market participants. And vigilantly watching the quotes ticker to wait for an ideal "target" price to be hit might take up your whole day!
 
 For this reason advanced traders rely heavily on more advanced order types, primarily the "[limit order](#trading-vocabulary)". A limit order is similar to a market order, with two major exceptions: the limit order includes a "target price", and it remains "open" until cancelled by the trader or the target price is reached. When the current price of the stock reaches the order's target price then the order is executed (creating a new trade), and the order disappears.
 
-#### Interface Details
+### Interface Details
 In the Ada Trader interface the order system can be found in the bottom panel. There are two sections to this panel: the "open orders" list and the order entry form.
 
 The right side of the bottom panel has a form for creating new limit orders. This form has a drop-down list of available stock symbols, a text input for the order's target price, and a Buy and Sell button to create the order.
 
 The left side of the bottom panel has a list of all open orders. Orders are listed with the oldest at the top. Each open order entry in the list includes the symbol being ordered, whether it is a buy or sell order, the target price, and a cancel button.
 
-#### User Stories
+### User Stories
 As a user, I can:
   - See a list of open orders in the left side of the bottom panel, including the:
     - Symbol for each order
@@ -153,17 +153,17 @@ Additionally, when:
       - Each order is removed from the open order list
       - Each order will never execute again
 
-#### Testing
+### Testing
 You should have tests for any validations your models have, as well as any custom functions that you create on those models. **Optional**: Write a test which verifies that limit orders are executed and destroyed when the relevant stock reaches the order's target price.
 
-#### Advice
+### Advice
 In order to get the list of symbols for the order entry form's drop-down, you may need to have that view access the quote collection.
 
 When removing a Backbone View from the page, that does not mean that the associated Model is gone! Be careful when cancelling an order, because an order that isn't shown on the page might still "hear" events that are triggered.
 
 The rules above for when an order can or cannot be created are a great place to use Backbone's model validation system! Make sure to include tests for those validations as well.
 
-### Trading Vocabulary
+## Trading Vocabulary
 | Term | Definition |
 |:-----|:-----------|
 | Market Order | An order to purchase or sell a particular stock at the "market" price. [More details here.](https://www.investopedia.com/terms/m/marketorder.asp) |
