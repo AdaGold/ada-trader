@@ -13,7 +13,7 @@ This project should demonstrate your ability to:
 - Create Model instances from the user input in that form
 - Test model logic in a Backbone application
 
-Although real terminology is used throughout this project, and the interface design is intended to loosely mimic real-world trading platforms, having actual trading "domain knowledge" is **NOT** a learning goal.
+Although real terminology is used throughout this project, and the interface design is intended to loosely mimic real-world trading platforms, having actual trading "domain knowledge" is **NOT** a learning goal. If you're unclear on any of the terminology used in this document please consult the [vocabulary section](#trading-vocabulary) for an explanation, or ask Charles / other instructional staff!
 
 ## Setup
 ### Starting project
@@ -36,7 +36,7 @@ This project uses the same structure as BackTREK and is based on our [backbone b
 ## Project Requirements
 ### Wave 1 - Trading with Market Orders
 #### Trading Overview
-In this wave you will implement the Backbone Views, events, and model logic to allow a user to trade stocks using "market orders". A market order is when a trader purchases or sells a stock at the _current_ price, and the order "executes" (actually becomes a trade) immediately.
+In this wave you will implement the Backbone Views, events, and model logic to allow a user to trade stocks using "[market orders](#trading-vocabulary)". A market order is when a trader purchases or sells a stock at the _current_ price, and the order "executes" (actually becomes a trade) immediately.
 
 #### Interface Details
 In the Ada Trader interface market orders are created by clicking the Buy and Sell buttons next to each stock quote. When a user presses one of these buttons they are trading that stock at the price displayed at that moment.
@@ -45,7 +45,7 @@ In the Ada Trader interface market orders are created by clicking the Buy and Se
 As a user, I can:
   - See a list of quotes in the left side of the top panel, including the:
     - Symbol for each quote
-    - Market price for each quote
+    - [Market price](#trading-vocabulary) for each quote
     - Buy button for each quote
     - Sell button for each quote
   - Click the Buy button associated with a quote
@@ -74,7 +74,7 @@ As a user, I can see:
   - A list of all completed trades in the right side of the top panel, including the:
     - Symbol for each trade
     - Buy/Sell indicator for each trade
-    - Trade price for each trade
+    - [Trade price](#trading-vocabulary) for each trade
   - The most recent trade listed at the top of the trade history
 
 As a user, when I:
@@ -98,7 +98,7 @@ To keep things simple, this wave can be completed without creating any new Backb
 #### Trading Overview
 When traders become more advanced in their profession they begin to find that trading only with market orders can be tedious. It can be risky to click "Buy" when the quote has one price and find that your order executed after the price had increased substantially, due to other market participants. And vigilantly watching the quotes ticker to wait for an ideal "target" price to be hit might take up your whole day!
 
-For this reason advanced traders rely heavily on more advanced order types, primarily the "limit order". A limit order is similar to a market order, with two major exceptions: the limit order includes a "target price", and it remains "open" until cancelled by the trader or the target price is reached. When the current price of the stock reaches the order's target price then the order is executed (creating a new trade), and the order disappears.
+For this reason advanced traders rely heavily on more advanced order types, primarily the "[limit order](#trading-vocabulary)". A limit order is similar to a market order, with two major exceptions: the limit order includes a "target price", and it remains "open" until cancelled by the trader or the target price is reached. When the current price of the stock reaches the order's target price then the order is executed (creating a new trade), and the order disappears.
 
 #### Interface Details
 In the Ada Trader interface the order system can be found in the bottom panel. There are two sections to this panel: the "open orders" list and the order entry form.
@@ -112,7 +112,7 @@ As a user, I can:
   - See a list of open orders in the left side of the bottom panel, including the:
     - Symbol for each order
     - Buy/Sell indicator for each order
-    - Target price for each order
+    - [Target price](#trading-vocabulary) for each order
     - Cancel button for each order
   - See an order entry form in the right side of the bottom panel, including the:
     - Symbol selection drop-down, which lists all symbols shown in the quote ticker
@@ -162,3 +162,12 @@ In order to get the list of symbols for the order entry form's drop-down, you ma
 When removing a Backbone View from the page, that does not mean that the associated Model is gone! Be careful when cancelling an order, because an order that isn't shown on the page might still "hear" events that are triggered.
 
 The rules above for when an order can or cannot be created are a great place to use Backbone's model validation system! Make sure to include tests for those validations as well.
+
+### Trading Vocabulary
+| Term | Definition |
+|:-----|:-----------|
+| Market Order | An order to purchase or sell a particular stock at the "market" price. [More details here.](https://www.investopedia.com/terms/m/marketorder.asp) |
+| Limit Order | An order to purchase or sell a particular stock at a trader-specified "target" price. [More details here.](https://www.investopedia.com/terms/l/limitorder.asp) |
+| Market Price | The **current** price for a stock, listed with its symbol in the quote ticker. This price will change over time. |
+| Target Price | The desired price for a limit order to execute. This price is higher than "market" price if the order is to sell, and it is lower than the "market" price if the order is to buy. This price is fixed for a given order. |
+| Trade Price | The price that a stock was traded at (either buy or sell) for a given trade. This price is fixed because it represents an historical event. |
