@@ -3,6 +3,17 @@ In this project you will create the Ada Trader platform for real-time stock trad
 
 // TODO: add gif
 
+## Learning Goals
+This project should demonstrate your ability to:
+- Create Backbone Views of Models
+- Create Backbone Views of Collections
+- Create multiple Backbone Models that relate to each other
+- Connect Backbone Models, Collections, and Views through custom events
+- Use Backbone Views to create a form for user input
+- Create Model instances from the user input in that form
+- Test model logic in a Backbone application
+
+Although real terminology is used throughout this project, and the interface design is intended to loosely mimic real-world trading platforms, having actual trading "domain knowledge" is **NOT** a learning goal.
 
 ## Setup
 ### Starting project
