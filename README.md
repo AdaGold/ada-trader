@@ -62,25 +62,37 @@ Tests have been provided for the two custom functions that you will need to impl
 #### Advice
 Before the prices show on your stock quotes will begin to adjust over time, you will need to connect your quote collection to the simulator model -- check out the starter code in `src/app.js`.
 
-### Wave 2 - Create and Render Trades after buying or selling a Quote
-  - When a Quote is created and added to the QuoteList, it should create a Trade. The purpose of the Trades panel is to show a history of every transaction
-  - Use the event bus provided
+### Wave 2 - Trade History
+#### Trading Overview
+When working as a stock trader it is important to know which trades you've made! This can be necessary for tax auditing and other regulatory purposes, as well as to determine the success you've had while trading. As developers it can also be a useful tool for debugging our trading platform.
 
-<!-- In this wave, you should work on a second Backbone view,  `QuoteListView`, which is responsible for displaying all of the Quotes. This view should manage a list of `QuoteView` instances and render each of them. In order to achieve this, your application should:
+#### Interface Details
+In the Ada Trader interface the right side of the top panel lists a history of all trades made by the user. The most recent trades are listed at the top for increased visibility. Each trade listed in the history includes the symbol that was traded, whether it was bought or sold, and the price for that trade.
 
-#### Primary Requirements
-1. Have a `QuoteList` extended from `Backbone.Collection`
-1. Have a `QuoteListView` extended from `Backbone.View`.
-1. The `QuoteListView` should:
-  * Have an `initialize` function that should:
-    * Receive and store a list of quote data objects.
-    * Compile the same Underscore template from Wave 1. This compiled template will replace the one used in `QuoteView` during Wave 1.
-  * Have a `render` function that should:
-    * Render each `QuoteView` instance in the list of quotes.
-    * Have a reference to the element in `index.html` that will contain the list of rendered `quotes`.
-    * Append to that element the jQuery object for each `QuoteView` instance we rendered.
-1. When creating an instance of the `QuoteListView`, it should be tied to an instance of the `QuoteList` model
-1. When the app opens, it must have a few quotes already populated and rendered on the page. -->
+#### User Stories
+As a user, I can see:
+  - A list of all completed trades in the right side of the top panel, including the:
+    - Symbol for each trade
+    - Buy/Sell indicator for each trade
+    - Trade price for each trade
+  - The most recent trade listed at the top of the trade history
+
+As a user, when I:
+  - Click the Buy button for a quote:
+    - A new entry is added to the top of the trade history
+    - The new trade entry has:
+      - The symbol from the quote associated with the Buy button
+      - An indicator that the trade was a "buy"
+      - The price from the quote associated with the Buy button _when the button was clicked_
+  - Click the Sell button for a quote:
+    - A new entry is aded to the top of the trade history
+    - The new trade entry has:
+      - The symbol from the quote associated with the Sell button
+      - An indicator that the trade was a "sell"
+      - The price from the quote associated with the Sell button _when the button was clicked_
+
+#### Advice
+To keep things simple, this wave can be completed without creating any new Backbone Models, Collections, or Views. Because the trade history is "static" (the data associated with each trade will never change), we can implement this behavior entirely through events and using jQuery to update the DOM.
 
 ### Wave 3 - Creating Orders
   - Have a form that can create an Order with symbol, price, and "buy if price is lower than" or "sell if price is higher than" button
