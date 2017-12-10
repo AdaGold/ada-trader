@@ -126,14 +126,14 @@ As a user, when I:
     - That order will never execute
   - Click Buy in the order entry form:
     - If the target price is blank OR is **greater than or equal to** the current market price:
-      - That order is not created and (TODO: error display?)
+      - That order is not created and an appropriate error message is displayed beneath the form
     - If the target price is **less than** to the current market price:
       - A new Buy order is added to the bottom of the open orders list, with the:
         - Symbol from the the form
         - Target price from the form
   - Click Sell in the order entry form:
     - If the target price is blank OR is **less than or equal to** the current market price:
-      - That order is not created and (TODO: error display?)
+      - That order is not created and an appropriate error message is displayed beneath the form
     - If the target price is **greater than** the current market price:
       - A new Sell order is added to the bottom of the open orders list, with the:
         - Symbol from the the form
