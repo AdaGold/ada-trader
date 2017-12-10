@@ -20,12 +20,20 @@ Consider some of the following files that we provide
 | File | Purpose |
 |:-----|:--------|
 | `src/app.js` | Main entry-point of the application. This file contains a function `simulate()`, which will be used in wave 4. |
-| `build/index.html` | Static HTML & Underscore template script for the quote view. It makes some assumptions about what ids you may use to target, so be mindful of that. |
-| `build/css/app.css` | Some basic styles. Besides the assumptions it makes to work with the provided `index.html`, it makes some assumptions about how you will add and render a single quote, so be mindful of that if you choose to use these styles. |
+| `dist/index.html` | Static HTML & Underscore template script for the quote view. It makes some assumptions about what ids you may use to target, so be mindful of that. |
+| `dist/css/app.css` | Some basic styles. Besides the assumptions it makes to work with the provided `index.html`, it makes some assumptions about how you will add and render a single quote, so be mindful of that if you choose to use these styles. |
+| simulator |  |
 
 ## Requirements
-### Wave 1 - Render a Quote (with a symbol and price)
-In this wave you should be able to render a single instance of a Quote, which will display the name (known as a symbol) and price for a single stock. In order to achieve this your application should at the very least:
+### Wave 1 - Quotes, QuoteList, and Simulation
+
+Render a Quote (with a symbol and price) and a QuoteList in the Quotes Section
+A Quote
+  - Will have a buy/sell button
+QuoteList
+  - Will hook up to the given simulator model, so that every second the prices of each quote update
+
+<!-- In this wave you should be able to render a single instance of a Quote, which will display the name (known as a symbol) and price for a single stock. In order to achieve this your application should at the very least:
 
 #### Primary Requirements
 1. Have a `Quote` extended from `Backbone.Model`
@@ -36,10 +44,13 @@ In this wave you should be able to render a single instance of a Quote, which wi
     * Compile an Underscore template using the script with the id `quote-template` (which is already defined in `index.html`).
   * Have a `render` function that should:
     * Use the compiled template to render HTML for a single quote.
-1. When creating an instance of the `QuoteView`, it should be tied to an instance of the `Quote` model
+1. When creating an instance of the `QuoteView`, it should be tied to an instance of the `Quote` model -->
 
-### Wave 2 - A Larger View
-In this wave, you should work on a second Backbone view,  `QuoteListView`, which is responsible for displaying all of the Quotes. This view should manage a list of `QuoteView` instances and render each of them. In order to achieve this, your application should:
+### Wave 2 - Create and Render Trades after buying or selling a Quote
+  - When a Quote is created and added to the QuoteList, it should create a Trade. The purpose of the Trades panel is to show a history of every transaction
+  - Use the event bus provided
+
+<!-- In this wave, you should work on a second Backbone view,  `QuoteListView`, which is responsible for displaying all of the Quotes. This view should manage a list of `QuoteView` instances and render each of them. In order to achieve this, your application should:
 
 #### Primary Requirements
 1. Have a `QuoteList` extended from `Backbone.Collection`
@@ -53,10 +64,15 @@ In this wave, you should work on a second Backbone view,  `QuoteListView`, which
     * Have a reference to the element in `index.html` that will contain the list of rendered `quotes`.
     * Append to that element the jQuery object for each `QuoteView` instance we rendered.
 1. When creating an instance of the `QuoteListView`, it should be tied to an instance of the `QuoteList` model
-1. When the app opens, it must have a few quotes already populated and rendered on the page.
+1. When the app opens, it must have a few quotes already populated and rendered on the page. -->
 
-### Wave 3 - Events: Buy and Sell, Testing
-In this wave we will extend our `QuoteView` class to support clicking on the Buy and Sell buttons for each quote. In order to achieve this, your application should be updated so that:
+### Wave 3 - Creating Orders
+  - Have a form that can create an Order with symbol, price, and "buy if price is lower than" or "sell if price is higher than" button
+  - Show a list of these orders
+  - If these conditions are met, then destroy the order
+  - use the event bus
+
+<!-- In this wave we will extend our `QuoteView` class to support clicking on the Buy and Sell buttons for each quote. In order to achieve this, your application should be updated so that:
 
 1. The `QuoteView` class should:
   * Have an `events` property that defines two handlers for the `click` event, one for each `button` in the quote template.
@@ -66,9 +82,9 @@ In this wave we will extend our `QuoteView` class to support clicking on the Buy
   * Have a function that runs when the `click` event happens on the sell button. This function should:
     * Decrease the stocks' price by $1.00.
     * Re-render the view so that the new price is displayed to the user.
-1. The `Quote` model should have unit tests written in Jasmine for any custom methods you add to it.
+1. The `Quote` model should have unit tests written in Jasmine for any custom methods you add to it. -->
 
-### Wave 4 - Events: Simulate
+<!-- ### Wave 4 - Events: Simulate
 This wave will implement a simulation of the broader stock market. To make this simulation as true-to-life as possible, we'll be randomly moving the stock price up or down by a small amount, once per second. In `app.js`, we've provided the function `simulate` which does exactly that. In order to achieve this, your application should be updated so that:
 
 1. The `QuoteView` class should:
@@ -82,22 +98,4 @@ This wave will implement a simulation of the broader stock market. To make this 
 
 You may find that you would rather move the `simulate` function out of `app.js`. Feel free to do so.
 
-We do not expect you to write unit tests for the `simulate` function.
-
-### Extra Features
-1. Add functionality to the "Buy all"/"Sell all" buttons which buy or sell all stocks at once. Yay diversification!
-1. Deal with the case of a stock price reaching zero or negative values.
-<!-- 1. We can do better than hardcoded data! _Along with leaving at least two hardcoded quotes in the app_, let's pull our data from an API. Clone [the ada-trader-server](https://github.com/CheezItMan/ada-trader-server). Modify your app so it can pull from this ada-trader-server if it's running locally. -->
-1. Add a feature so that the details of the buying and selling activity is displayed and stored somewhere, like historical data or an inventory.
-
-
-## Example Stocks
-* Symbol: `HUMOR`, Price: $88.50 - Cristal's HumorUs capstone
-* Symbol: `CLOTH`, Price: $81.70 - Sophia's Cloth Sim capstone
-* Symbol: `HABIT`, Price: $98.00 - Val's Habitmon capstone
-* Symbol: `SUPER`, Price: $83.10 - Rowan's Super Hero Draft capstone
-* Symbol: `INGRD`, Price: $79.40 - Nicole's Ingredient Inspector capstone
-* Symbol: `MXTPE`, Price: $109.20 - Jess's Digital Mixtape capstone
-* Symbol: `CNTAR`, Price: $90.70 - Leah's Centaur capstone
-* Symbol: `EVCLR`, Price: $101.90 - Lisa's Evolution In Color capstone
-* Symbol: `FUZZY`, Price: $88.60 - Jade's Fuzz Therapy capstone
+We do not expect you to write unit tests for the `simulate` function. -->
