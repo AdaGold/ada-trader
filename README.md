@@ -50,6 +50,7 @@ As a user, I can:
     - [Market price](#trading-vocabulary) for each quote
     - Buy button for each quote
     - Sell button for each quote
+
 As a user, when I:
   - Click the Buy button for a quote:
     - That quote's market price increases by $1.00
@@ -116,9 +117,6 @@ As a user, I can:
     - Target price input box
     - Buy button
     - Sell button
-  - Click the Cancel button on each order in the open orders list
-  - Click the Buy button in the order entry form
-  - Click the Sell button in the order entry form
 
 As a user, when I:
   - Click the Cancel button for an order:
