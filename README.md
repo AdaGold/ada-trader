@@ -157,7 +157,7 @@ Additionally, when:
 You should have tests for any validations your models have, as well as any custom functions that you create on those models. **Optional**: Write a test which verifies that limit orders are executed and destroyed when the relevant stock reaches the order's target price.
 
 ### Advice
-Before you start working on this wave, set aside time with your pair and make a diagram to explore the flow of events, and make a plan of action. Discuss with your partner where the pieces of information currently exist, and how they can flow and propagate to where they need to be.
+Before you start working on this wave, set aside time with another Adie and make a diagram to explore the flow of events, and make a plan of action. Discuss with that person where the pieces of information currently exist, and how they can flow and propagate to where they need to be.
 
 In order to get the list of symbols for the order entry form's drop-down, you may need to have that view access the quote collection.
 
