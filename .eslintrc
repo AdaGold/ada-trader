@@ -1,5 +1,5 @@
 {
-  "extends": ["eslint:recommended", "plugin:jasmine/recommended"],
+  "extends": ["airbnb-base",  "eslint:recommended", "plugin:jasmine/recommended"],
   "parser": "babel-eslint",
   "env": {
     "browser": true,
