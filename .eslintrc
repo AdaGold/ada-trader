@@ -24,5 +24,10 @@
     }],
     "linebreak-style": 0
   },
-  "plugins": ["jasmine"]
+  "plugins": ["jasmine"],
+  "settings": {
+    "import/resolver": {
+      "babel-module": {}
+    }
+  }
 }
