@@ -33,36 +33,6 @@
             <h2>Trade History</h2>
             <div class="trades-list-container">
               <ul id="trades" class="trades">
-                <li class="trade">
-                  <span>
-                    You bought QUOTE at $106.00
-                  </span>
-                </li>
-                <li class="trade">
-                  <span>
-                    You sold QUOTE at $213.00
-                  </span>
-                </li>
-                <li class="trade">
-                  <span>
-                    You bought QUOTE at $106.00
-                  </span>
-                </li>
-                <li class="trade">
-                  <span>
-                    You sold QUOTE at $213.00
-                  </span>
-                </li>
-                <li class="trade">
-                  <span>
-                    You bought QUOTE at $106.00
-                  </span>
-                </li>
-                <li class="trade">
-                  <span>
-                    You sold QUOTE at $213.00
-                  </span>
-                </li>
               </ul>
             </div>
           </div>
@@ -167,6 +137,15 @@
       </div>
       <!-- </li> -->
     </script>
+
+    <script type="text/template" id="trade-template">
+      <li class="trade">
+        <span>
+          You <%- buy ? 'bought' : 'sold' %> <%- symbol %> at $<%- price.toFixed(2) %>
+        </span>
+      </li>
+    </script>
+
     <script src="/app.bundle.js" charset="utf-8"></script>
   </body>
 </html>
