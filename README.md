@@ -156,7 +156,7 @@ You should have tests for any validations your models have, as well as any custo
 ### Advice
 Before you start working on this wave, set aside time with another Adie and make a diagram to explore the flow of events, and make a plan of action. Discuss with that person where the pieces of information currently exist, and how they can flow and propagate to where they need to be.
 
-In order to get the list of symbols for the order entry form's drop-down, you may need to have that view access the quote collection.
+To get the list of symbols for the order entry form's drop-down, you may need to give the View that controls the form access to the quote collection.
 
 When removing a Backbone View from the page, that does not mean that the associated Model is gone! Be careful when cancelling an order, because an order that isn't shown on the page might still "hear" events that are triggered. You may observe this bug if the trade history continues to update with transactions from "lingering" orders, even if the order is not rendered within the list of open orders.
 
