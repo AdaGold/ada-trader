@@ -1,4 +1,4 @@
-import 'foundation-sites/dist/css/foundation.css';
+import 'foundation-sites/dist/foundation.css';
 import './css/app.css';
 
 import $ from 'jquery';
