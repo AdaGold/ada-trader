@@ -39,6 +39,7 @@
     "css-loader": "^0.28.7",
     "eslint": "^4.10.0",
     "eslint-config-airbnb": "^16.1.0",
+    "eslint-import-resolver-babel-module": "^4.0.0-beta.3",
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jasmine": "^2.9.1",
     "eslint-plugin-jsx-a11y": "^6.0.2",
