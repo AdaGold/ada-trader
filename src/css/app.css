@@ -2,43 +2,34 @@ h1, h4, h5, h6, p, label {
   font-family: 'Roboto', sans-serif;
 }
 
-header {
-  text-align: center;
-}
-
-.site-header {
-  display: inline-block;
-  border: double 5px darkgray;
-  border-radius: 7px;
-  margin: 1em auto;
-  padding: 0.5em 1em;
-  text-transform: uppercase;
-  font-weight: 600;
-  font-size: 1em;
-}
-
 h2, h3 {
   font-family: 'Roboto Condensed', sans-serif;
 }
 
 .workspace {
-  height: 50vh;
+  padding-top: 2em;
+  height: 40vh;
 }
 
 .quotes-list-container, .trades-list-container {
-  height: 40vh;
+  height: 25vh;
   overflow: scroll;
 }
 
-.quotes {
+.quotes, .trades, .orders {
   list-style-type: none;
   margin: 0;
 }
 
 .quote {
-  margin: 1em auto;
+  clear: both;
+  margin: 0.5em auto 1em auto;
   padding: 20px 0;
   border-bottom: lightgray solid 1px;
+}
+
+.quote:last-child {
+  border-bottom: none;
 }
 
 .quote .symbol, .quote .price {
@@ -55,6 +46,10 @@ h2, h3 {
   margin-left: 10px;
 }
 
+.quote .quote-actions {
+  float: right;
+}
+
 .trade-column {
   border-left: solid gray 2px;
 }
@@ -63,9 +58,64 @@ h2, h3 {
   height: 100%;
 }
 
+/*essentially a rip-off of foundation's .callout.primary class*/
+.trade {
+  margin: 0 0 1rem 0;
+  padding: 1rem;
+  border: 1px solid rgba(10, 10, 10, 0.25);
+  border-radius: 0;
+  position: relative;
+  color: #0a0a0a;
+  background-color: #def0fc;
+}
+
 .orders-list-container {
-  height: 20vh;
+  height: 30vh;
   overflow: scroll;
+}
+
+.order {
+  clear: both;
+  margin: 0.5em auto 1em auto;
+  padding: 20px 0;
+  border-bottom: lightgray solid 1px;
+}
+
+.order:last-child {
+  border-bottom: none;
+}
+
+.order .symbol, .order .detail {
+  font-family: 'Roboto Condensed', sans-serif;
+  display: inline;
+}
+
+.order .symbol {
+  text-transform: uppercase;
+}
+
+.order .detail {
+  color: darkgray;
+  margin-left: 10px;
+}
+
+.order .cancel.button {
+  float: right;
+}
+
+header, footer {
+  text-align: center;
+}
+
+.logo {
+  display: inline-block;
+  border: double 5px darkgray;
+  border-radius: 7px;
+  margin: 1em auto;
+  padding: 0.5em 1em;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 1em;
 }
 
 /*
