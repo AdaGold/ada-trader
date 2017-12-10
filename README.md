@@ -157,6 +157,8 @@ Additionally, when:
 You should have tests for any validations your models have, as well as any custom functions that you create on those models. **Optional**: Write a test which verifies that limit orders are executed and destroyed when the relevant stock reaches the order's target price.
 
 ### Advice
+Before you start working on this wave, set aside time with your pair and make a diagram to explore the flow of events, and make a plan of action. Discuss with your partner where the pieces of information currently exist, and how they can flow and propagate to where they need to be.
+
 In order to get the list of symbols for the order entry form's drop-down, you may need to have that view access the quote collection.
 
 When removing a Backbone View from the page, that does not mean that the associated Model is gone! Be careful when cancelling an order, because an order that isn't shown on the page might still "hear" events that are triggered. You may observe this bug if the trade history continues to update with transactions from "lingering" orders, even if the order is not rendered within the list of open orders.
