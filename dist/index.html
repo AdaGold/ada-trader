@@ -60,21 +60,13 @@
            <form>
              <label for="symbol">Symbol</label>
              <select name="symbol">
-               <option>
-                 MUNEY
-               </option>
-               <option>
-                 ABCDE
-               </option>
-               <option>
-                 YMCA
-               </option>
+               <!-- Option entries should be added here using JavaScript -->
              </select>
              <label for="price-target">Price</label>
-             <input type="number" name="price-target" />
+             <input type="number" name="price-target" step="0.10" min="0.00" placeholder="100.00" />
              <label>Action</label>
-             <button class="alert button">Buy</button>
-             <button class="success button">Sell</button>
+             <button class="btn-buy alert button">Buy</button>
+             <button class="btn-sell success button">Sell</button>
            </form>
          </div>
 
