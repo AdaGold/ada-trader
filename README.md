@@ -90,7 +90,7 @@ As a user, when I:
       - The price from the quote associated with the Sell button _when the button was clicked_
 
 ### Advice
-To keep things simple, this wave can be completed without creating any new Backbone Models, Collections, or Views. Because the trade history is "static" (the data associated with each trade will never change), we can implement this behavior entirely through events and using jQuery to update the DOM.
+To keep things simple, this wave can be completed without creating any new Backbone Models or Collections. Because the trade history is "static" (the data associated with each trade will never change), we can implement this behavior entirely through Views, events, and using jQuery to update the DOM.
 
 ## Wave 3 - Trading with Limit Orders
 ### Trading Overview
