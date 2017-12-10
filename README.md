@@ -59,9 +59,6 @@ As a user, when I:
 ### Tests
 Tests have been provided for the two custom functions that you will need to implement for this wave. In later waves you will need to write your own tests for any custom functions that you add to your models, as well as any validations you have.
 
-### Advice
-To see the prices on your stock quotes adjust over time, you will need to connect your quote collection to the simulator model -- check out the starter code in `src/app.js`.
-
 ## Wave 2 - Trade History
 ### Trading Overview
 When working as a stock trader it is important to know which trades you've made! This can be necessary for tax auditing and other regulatory purposes, as well as to determine the success you've had while trading. As developers it can also be a useful tool for debugging our trading platform.
