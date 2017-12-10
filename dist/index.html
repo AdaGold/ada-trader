@@ -42,48 +42,13 @@
 
       <hr />
 
-      <div class="order-workspace row">
+      <div id="order-workspace" class="order-workspace row">
 
        <div class="columns large-8 small-12">
          <div class="orders-container columns large-10 large-offset-1">
            <h2>Orders</h2>
            <div class="orders-list-container">
-             <ul class="orders">
-               <li class="order">
-                 <h3 class="symbol">MUNEY</h3>
-                 <div class="detail">
-                   <span class="action">buy</span> at <span class="price">$98.00</span>
-                 </div>
-                 <button class="cancel button secondary">Cancel</button>
-               </li>
-               <li class="order">
-                 <h3 class="symbol">MUNEY</h3>
-                 <div class="detail">
-                   <span class="action">buy</span> at <span class="price">$98.00</span>
-                 </div>
-                 <button class="cancel button secondary">Cancel</button>
-               </li>
-               <li class="order">
-                 <h3 class="symbol">MUNEY</h3>
-                 <div class="detail">
-                   <span class="action">buy</span> at <span class="price">$98.00</span>
-                 </div>
-                 <button class="cancel button secondary">Cancel</button>
-               </li>
-               <li class="order">
-                 <h3 class="symbol">MUNEY</h3>
-                 <div class="detail">
-                   <span class="action">buy</span> at <span class="price">$98.00</span>
-                 </div>
-                 <button class="cancel button secondary">Cancel</button>
-               </li>
-               <li class="order">
-                 <h3 class="symbol">MUNEY</h3>
-                 <div class="detail">
-                   <span class="action">buy</span> at <span class="price">$98.00</span>
-                 </div>
-                 <button class="cancel button secondary">Cancel</button>
-               </li>
+             <ul id="orders" class="orders">
              </ul>
            </div>
          </div>
@@ -144,6 +109,16 @@
           You <%- buy ? 'bought' : 'sold' %> <%- symbol %> at $<%- price.toFixed(2) %>
         </span>
       </li>
+    </script>
+
+    <script type="text/template" id="order-template">
+      <h3 class="symbol"><%- symbol %></h3>
+      <div class="detail">
+        <span class="action"><%- buy ? 'buy' : 'sell' %></span>
+        at
+        <span class="price">$<%- targetPrice.toFixed(2) %></span>
+      </div>
+      <button class="btn-cancel button secondary">Cancel</button>
     </script>
 
     <script src="/app.bundle.js" charset="utf-8"></script>
