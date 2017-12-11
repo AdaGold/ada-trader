@@ -1,5 +1,21 @@
 # Ada Trader
-Backbone application for simulated trading with real-time stock quotes for Ada capstone projects.
+In this project you will create the Ada Trader platform for real-time stock trading. All trading will happen with fake stocks that represent previous Ada capstone projects, and will be connected to a "real-time" simulation that randomly adjusts the prices for each stock over time.
+
+This is an individual, [stage 2](https://github.com/Ada-Developers-Academy/pedagogy/blob/master/rule-of-three.md) project.
+
+![Ada Trader](ada-trader.gif)
+
+## Learning Goals
+This project should demonstrate your ability to:
+- Create Backbone Views of Models
+- Create Backbone Views of Collections
+- Create multiple Backbone Models that relate to each other
+- Connect Backbone Models, Collections, and Views through custom events
+- Use Backbone Views to create a form for user input
+- Create Model instances from the user input in that form
+- Test model logic in a Backbone application
+
+Although real terminology is used throughout this project, and the interface design is intended to loosely mimic real-world trading platforms, having actual trading "domain knowledge" is **NOT** a learning goal. If you're unclear on any of the terminology used in this document please consult the [vocabulary section](#trading-vocabulary) for an explanation, or ask Charles / other instructional staff!
 
 ## Setup
 ### Starting project
@@ -10,87 +26,145 @@ To get started with the Ada Trader project follow these steps:
 1. `npm install`
 1. `npm start`
 
-### Project structure
-You should use the following files when building your application:
+### Project Baseline
+This project uses the same structure as BackTREK and is based on our [backbone baseline](https://github.com/AdaGold/backbone-baseline). The baseline for this project includes some models and collections that have already been implemented:
 
-| File | Purpose |
-|:-----|:--------|
-| `src/app/views/application_view.js` | Overall "container" for the entire application, similar to `TaskListView` in the live code. |
-| `src/app/views/quote_view.js` | View for an individual quote. |
-| `src/app.js` | Main entry-point of the application. |
-| `build/index.html` | Static HTML & Underscore template script for the quote view. |
+| Model | File | Purpose |
+|:------|:-----|:--------|
+| `Quote` | `src/models/quote.js` | This model represents an individual stock quote, and has attributes for:<br>• `symbol` - code name for the stock (e.g. AAPL)<br>• `price` - current price of the quote<br>You will add the ability to buy / sell a quote using custom functions. |
+| `QuoteList` | `src/collections/quote_list.js` | This collection represents all of the quotes available on the trading platform. |
+| `Simulator` | `src/models/simulator.js` | This model handles the logic for simulating stock market activity by randomly shifting the price for each quote up or down each second within a range of -1.00 and +1.00. You will need to connect it to your `QuoteList` instance in `src/app.js`. |
 
-## Requirements
-### Wave 1 - First View
-In this wave we will build our first Backbone view, which will display the name (known as a symbol) and price for a single stock. In order to achieve this your application should:
+# Project Requirements
+## Wave 1 - Trading with Market Orders
+### Trading Overview
+In this wave you will implement the Backbone Views, events, and model logic to allow a user to trade stocks using "[market orders](#trading-vocabulary)". A market order is when a trader purchases or sells a stock at the _current_ price, and the order "executes" (actually becomes a trade) immediately.
 
-#### Primary Requirements
-1. Have a `QuoteView` class extended from `Backbone.View` (in `src/app/views/quote_view.js`).
-1. The `QuoteView` should:
-  * Have an `initialize` function that should:
-    * Receive and store a JavaScript object with quote data (`symbol` and `price`). See [Example Stocks](#example-stocks) for inspiration.
-    * Compile an Underscore template using the script named `tmpl-quote-view` (which is already defined in `index.html`).
-  * Have a `render` function that should:
-    * Use the compiled template to render HTML for a single quote, using the quote data stored by `initialize`.
+### Interface Details
+In the Ada Trader interface market orders are created by clicking the Buy and Sell buttons next to each stock quote. When a user presses one of these buttons they are trading that stock at the price displayed at that moment.
 
-### Wave 2 - Second View
-In this wave we will create a second Backbone view, `ApplicationView`, which is responsible for displaying our entire web application. It will manage a list of `QuoteView` instances and render each of them. In order to achieve this your application should:
+### User Stories
+As a user, I can:
+  - See a list of quotes in the left side of the top panel, including the:
+    - Symbol for each quote
+    - [Market price](#trading-vocabulary) for each quote
+    - Buy button for each quote
+    - Sell button for each quote
 
-#### Primary Requirements
-1. Have an `ApplicationView` class extended from `Backbone.View` (in `src/app/views/application_view.js`).
-1. The `ApplicationView` should:
-  * Have an `initialize` function that should:
-    * Receive and store a list of quote data objects.
-    * Compile the same Underscore template from Wave 1. This compiled template will replace the one used in `QuoteView` during Wave 1.
-    * Create and store a list of *at least* two `QuoteView` instances. Each instance should be given:
-      * The data for a single quote.
-      * The compiled Underscore template from the above step.
-    * Store the HTML unordered list element from `index.html` that will contain the list of rendered `quotes`.
-  * Have a `render` function that should:
-    * Render each `QuoteView` instance in the list created within `initialize`.
-    * Use the stored HTML unordered list element.
-    * Append to that element the jQuery object for each `QuoteView` instance we rendered.
+As a user, when I:
+  - Click the Buy button for a quote:
+    - That quote's market price increases by $1.00
+  - Click the Sell button for a quote:
+    - That quote's market price decreases by $1.00
 
-### Wave 3 - Events
-In this wave we will extend our `QuoteView` class to support clicking on the Buy and Sell buttons for each quote. In order to achieve this your application should be updated so that:
+### Tests
+Tests have been provided for the two custom functions that you will need to implement for this wave. In later waves you will need to write your own tests for any custom functions that you add to your models, as well as any validations you have.
 
-#### Primary Requirements
-1. The `QuoteView` class should:
-  * Have an `events` property that defines two handlers for the `click` event, one for each `button` in the quote template.
-  * Have a function that runs when the `click` event happens on the buy button. This function should:
-    * Increase the stock's price by a fixed amount (say, $1.00).
-    * Re-render the view so that the new price is displayed to the user.
-  * Have a function that runs when the `click` event happens on the sell button. This function should:
-    * Decrease the stocks' price by a fixed amount (say, $1.00).
-    * Re-render the view so that the new price is displayed to the user.
+## Wave 2 - Trade History
+### Trading Overview
+When working as a stock trader it is important to know which trades you've made! This can be necessary for tax auditing and other regulatory purposes, as well as to determine the success you've had while trading. As developers it can also be a useful tool for debugging our trading platform.
 
-#### Optional Enhancements
-The optional enhancement for this wave is to implement a simulation of the broader stock market. To make this simulation as true-to-life as possible, we'll be randomly moving the stock price up or down by a small amount, once per second. In order to achieve this your application should be updated so that:
+### Interface Details
+In the Ada Trader interface the right side of the top panel lists a history of all trades made by the user. The most recent trades are listed at the top for increased visibility. Each trade listed in the history includes the symbol that was traded, whether it was bought or sold, and the price for that trade.
 
-1. The `QuoteView` class should:
-  * Setup [an event listener](http://backbonejs.org/#Events-on) for a custom event named `change:price`. This should be done in the `initialize` function.
-  * Have a function that runs when the `change:price` event happens. This function should:
-    * Expect that a `change` parameter will be passed into it.
-    * Expect that the `change` parameter will be a number, positive OR negative.
-    * Add the `change` parameter onto the current stock price.
-    * Re-render the view so that the new price is displayed to the user.
-1. The application entry-point (`src/app.js`) should:
-  * Implement the anonymous function passed to `setInterval`. It should:
-    * Get the list of all `QuoteView` instances from the `ApplicationView`.
-    * Call the `simulate` function on each of those `QuoteView` instances.
+### User Stories
+As a user, I can see:
+  - A list of all completed trades in the right side of the top panel, including the:
+    - Symbol for each trade
+    - Buy/Sell indicator for each trade
+    - [Trade price](#trading-vocabulary) for each trade
+  - The most recent trade listed at the top of the trade history
 
-### Extra Features
-1. Add buy/sell buttons to the `ApplicationView` which buy or sell all stocks at once. Yay diversification!
-1. Deal with the case of a stock price reaching zero or negative values.
+As a user, when I:
+  - Click the Buy button for a quote:
+    - A new entry is added to the top of the trade history
+    - The new trade entry has:
+      - The symbol from the quote associated with the Buy button
+      - An indicator that the trade was a "buy"
+      - The price from the quote associated with the Buy button _when the button was clicked_
+  - Click the Sell button for a quote:
+    - A new entry is aded to the top of the trade history
+    - The new trade entry has:
+      - The symbol from the quote associated with the Sell button
+      - An indicator that the trade was a "sell"
+      - The price from the quote associated with the Sell button _when the button was clicked_
 
+### Advice
+To keep things simple, this wave can be completed without creating any new Backbone Models or Collections. Because the trade history is "static" (the data associated with each trade will never change), we can implement this behavior entirely through Views, events, and using jQuery to update the DOM.
 
-## Example Stocks
-* Symbol: `HUMOR`, Price: $88.50 - Cristal's HumorUs capstone
-* Symbol: `CLOTH`, Price: $81.70 - Sophia's Cloth Sim capstone
-* Symbol: `HABIT`, Price: $98.00 - Val's Habitmon capstone
-* Symbol: `SUPER`, Price: $83.10 - Rowan's Super Hero Draft capstone
-* Symbol: `INGRD`, Price: $79.40 - Nicole's Ingredient Inspector capstone
-* Symbol: `MXTPE`, Price: $109.20 - Jess's Digital Mixtape capstone
-* Symbol: `CNTAR`, Price: $90.70 - Leah's Centaur capstone
-* Symbol: `EVCLR`, Price: $101.90 - Lisa's Evolution In Color capstone
-* Symbol: `FUZZY`, Price: $88.60 - Jade's Fuzz Therapy capstone
+## Wave 3 - Trading with Limit Orders
+### Trading Overview
+When traders become more advanced in their profession they begin to find that trading only with market orders can be tedious. It can be risky to click "Buy" when the quote has one price and find that your order executed after the price had increased substantially, due to other market participants. And vigilantly watching the quotes ticker to wait for an ideal "target" price to be hit might take up your whole day!
+
+For this reason advanced traders rely heavily on more advanced order types, primarily the "[limit order](#trading-vocabulary)". A limit order is similar to a market order, with two major exceptions: the limit order includes a "target price", and it remains "open" until cancelled by the trader or the target price is reached. When the current price of the stock reaches the order's target price then the order is executed (creating a new trade), and the order disappears.
+
+### Interface Details
+In the Ada Trader interface the order system can be found in the bottom panel. There are two sections to this panel: the "open orders" list and the order entry form.
+
+The right side of the bottom panel has a form for creating new limit orders. This form has a drop-down list of available stock symbols, a text input for the order's target price, and a Buy and Sell button to create the order.
+
+The left side of the bottom panel has a list of all open orders. Orders are listed with the oldest at the top. Each open order entry in the list includes the symbol being ordered, whether it is a buy or sell order, the target price, and a cancel button.
+
+### User Stories
+As a user, I can:
+  - See a list of open orders in the left side of the bottom panel, including the:
+    - Symbol for each order
+    - Buy/Sell indicator for each order
+    - [Target price](#trading-vocabulary) for each order
+    - Cancel button for each order
+  - See an order entry form in the right side of the bottom panel, including the:
+    - Symbol selection drop-down, which lists all symbols shown in the quote ticker
+    - Target price input box
+    - Buy button
+    - Sell button
+
+As a user, when I:
+  - Click the Cancel button for an order:
+    - That order is removed from the open orders list
+    - That order will never execute
+  - Click Buy in the order entry form:
+    - If the target price is blank OR is **greater than or equal to** the current market price:
+      - That order is not created and an appropriate error message is displayed beneath the form
+    - If the target price is **less than** to the current market price:
+      - A new Buy order is added to the bottom of the open orders list, with the:
+        - Symbol from the the form
+        - Target price from the form
+  - Click Sell in the order entry form:
+    - If the target price is blank OR is **less than or equal to** the current market price:
+      - That order is not created and an appropriate error message is displayed beneath the form
+    - If the target price is **greater than** the current market price:
+      - A new Sell order is added to the bottom of the open orders list, with the:
+        - Symbol from the the form
+        - Target price from the form
+
+Additionally, when:
+  - The price of a stock quote changes:
+    - If there are any open Sell orders in the open orders list, where the symbol matches the quote:
+      - Each order executes, in the same manner as though the user had clicked "Sell" on the quote
+      - Each order is removed from the open order list
+      - Each order will never execute again
+    - If there are any open Buy orders in the open orders list, where the symbol matches the quote:
+      - Each order executes, in the same manner as though the user had clicked "Buy" on the quote
+      - Each order is removed from the open order list
+      - Each order will never execute again
+
+### Testing
+You should have tests for any validations your models have, as well as any custom functions that you create on those models. **Optional**: Write a test which verifies that limit orders are executed and destroyed when the relevant stock reaches the order's target price.
+
+### Advice
+Before you start working on this wave, set aside time with another Adie and make a diagram to explore the flow of events, and make a plan of action. Discuss with that person where the pieces of information currently exist, and how they can flow and propagate to where they need to be.
+
+To get the list of symbols for the order entry form's drop-down, you may need to give the View that controls the form access to the quote collection.
+
+When removing a Backbone View from the page, that does not mean that the associated Model is gone! Be careful when cancelling an order, because an order that isn't shown on the page might still "hear" events that are triggered. You may observe this bug if the trade history continues to update with transactions from "lingering" orders, even if the order is not rendered within the list of open orders.
+
+The rules above for when an order can or cannot be created are a great place to use Backbone's model validation system! Make sure to include tests for those validations as well.
+
+## Trading Vocabulary
+| Term | Definition |
+|:-----|:-----------|
+| Market Order | An order to purchase or sell a particular stock at the "market" price. [More details here.](https://www.investopedia.com/terms/m/marketorder.asp) |
+| Limit Order | An order to purchase or sell a particular stock at a trader-specified "target" price. [More details here.](https://www.investopedia.com/terms/l/limitorder.asp) |
+| Market Price | The **current** price for a stock, listed with its symbol in the quote ticker. This price will change over time. |
+| Target Price | The desired price for a limit order to execute. This price is higher than "market" price if the order is to sell, and it is lower than the "market" price if the order is to buy. This price is fixed for a given order. |
+| Trade Price | The price that a stock was traded at (either buy or sell) for a given trade. This price is fixed because it represents an historical event. |

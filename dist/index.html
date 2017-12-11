@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Ada Trader</title>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Condensed|Rubik+Mono+One">
+  </head>
+  <body>
+    <main id="application" class="content">
+      <header class="row">
+        <h1 class="logo">Ada Trader</h1>
+      </header>
+
+      <div class="workspace row">
+
+        <div class="columns large-8 small-12">
+
+          <div id="quotes-container" class="quotes-container columns small-10 small-offset-1 end">
+            <h2>Quotes</h2>
+            <div class="quotes-list-container">
+              <ul id="quotes" class="quotes">
+              </ul>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="columns large-4 small-12 trade-column">
+
+          <div id="trades-container" class="trades-container columns small-10 small-offset-1">
+            <h2>Trade History</h2>
+            <div class="trades-list-container">
+              <ul id="trades" class="trades">
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <hr />
+
+      <div id="order-workspace" class="order-workspace row">
+
+       <div class="columns large-8 small-12">
+         <div class="orders-container columns large-10 large-offset-1">
+           <h2>Open Orders</h2>
+           <div class="orders-list-container">
+             <ul id="orders" class="orders">
+             </ul>
+           </div>
+         </div>
+       </div>
+
+       <div class="columns large-4 small-12 trade-column">
+         <div class="order-entry-form columns small-10 small-offset-1">
+           <h3>Order Entry Form</h3>
+           <form>
+             <label for="symbol">Symbol</label>
+             <select name="symbol">
+               <!-- Option entries should be added here using JavaScript -->
+             </select>
+             <label for="price-target">Price</label>
+             <input type="number" name="price-target" step="0.10" min="0.00" placeholder="100.00" />
+             <label>Action</label>
+             <button class="btn-buy alert button">Buy</button>
+             <button class="btn-sell success button">Sell</button>
+           </form>
+           <div class="form-errors">
+           </div>
+         </div>
+
+       </div>
+
+      </div>
+    </main>
+    <footer>
+      <div class="columns small-12 medium-11 medium-offset-1">
+        <p class="footer-copy">&copy; 2017, Ada Developers Academy</p>
+    </div>
+    </footer>
+
+    <script type="text/template" id="quote-template">
+      <!-- The provided styles assume that you will insert this template
+      within an element with the class "quote" applied -->
+      <!-- <li class="quote"> -->
+      <div class="row small-12 columns">
+        <h3 class="symbol"><%- symbol %></h3>
+        <h3 class="price">$<%- price.toFixed(2) %></h3>
+        <div class="quote-actions">
+          <button class="btn-buy alert button">Buy</button>
+          <button class="btn-sell success button">Sell</button>
+        </div>
+      </div>
+      <!-- </li> -->
+    </script>
+
+    <script type="text/template" id="trade-template">
+      <li class="trade">
+        <span>
+          You <%- buy ? 'bought' : 'sold' %> <%- symbol %> at $<%- price.toFixed(2) %>
+        </span>
+      </li>
+    </script>
+
+    <script type="text/template" id="order-template">
+      <h3 class="symbol"><%- symbol %></h3>
+      <div class="detail">
+        <span class="action"><%- buy ? 'buy' : 'sell' %></span>
+        at
+        <span class="price">$<%- targetPrice.toFixed(2) %></span>
+      </div>
+      <button class="btn-cancel button secondary">Cancel</button>
+    </script>
+
+    <script src="/app.bundle.js" charset="utf-8"></script>
+  </body>
+</html>

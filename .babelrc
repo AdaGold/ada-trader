@@ -1,11 +1,14 @@
 {
-  "presets": ["es2015"],
+  "presets": ["env"],
   "plugins": [
-    ["module-resolver", {
-      "root": ["./src"],
-      "alias": {
-        "spec": "./spec"
+    [
+      "module-resolver", {
+        "root": ["./src"],
+        "alias": {
+          "spec": "./spec"
+        }
       }
-    }]
+    ]
   ]
+
 }

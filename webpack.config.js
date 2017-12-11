@@ -1,31 +1,48 @@
-var webpack = require('webpack');
-var DashboardPlugin = require('webpack-dashboard/plugin');
+const path = require('path');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const webpack = require('webpack');
 
 module.exports = {
-  entry: ['babel-polyfill', './src/app.js'],
-  output: {
-    path: './build',
-    filename: 'app.bundle.js'
+  entry: {
+    app: './src/app.js',
   },
-  module: {
-    loaders: [{
-      test: /\.js$/,
-      exclude: /node_modules/,
-      loader: 'babel-loader'
-    }]
-  },
-  devtool: 'source-map',
+  devtool: 'inline-source-map',
   devServer: {
-    contentBase: './build',
-    historyApiFallback: true,
+    contentBase: './dist',
     hot: true,
-    inline: true,
-    port: 8081
+  },
+  output: {
+    filename: '[name].bundle.js',
+    path: path.resolve(__dirname, 'dist'),
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin({
-      multiStep: true
-    }),
-    new DashboardPlugin()
-  ]
+    new CleanWebpackPlugin(['dist'], { exclude: ['index.html'] }),
+    new webpack.NamedModulesPlugin(),
+    new webpack.HotModuleReplacementPlugin()
+  ],
+
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /(node_modules|bower_components)/,
+        use: {
+          loader: 'babel-loader'
+        }
+      },
+      {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          'css-loader',
+        ],
+      },
+      {
+        test: /\.(png|svg|jpg|gif)$/,
+        use: [
+          'file-loader',
+        ],
+      },
+    ],
+  },
 };
