@@ -1,8 +1,7 @@
 import 'foundation-sites/dist/foundation.css';
-import './css/app.css';
+import 'css/app.css';
 
 import $ from 'jquery';
-import _ from 'underscore';
 
 import Simulator from 'models/simulator';
 import QuoteList from 'collections/quote_list';
