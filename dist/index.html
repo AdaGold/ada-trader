@@ -21,67 +21,6 @@
             <h2>Quotes</h2>
             <div class="quotes-list-container">
               <ul id="quotes" class="quotes">
-                <li class="quote">
-                  <div class="row small-12 columns">
-                    <h3 class="symbol">DEEBUG</h3>
-                    <h3 class="price">$1338.00</h3>
-                    <div class="quote-actions">
-                      <button class="btn-sell alert button">Buy</button>
-                      <button class="btn-buy success button">Sell</button>
-                    </div>
-                  </div>
-                </li>
-                <li class="quote">
-                  <div class="row small-12 columns">
-                    <h3 class="symbol">DEEBUG</h3>
-                    <h3 class="price">$1338.00</h3>
-                    <div class="quote-actions">
-                      <button class="btn-sell alert button">Buy</button>
-                      <button class="btn-buy success button">Sell</button>
-                    </div>
-                  </div>
-                </li>
-                <li class="quote">
-                  <div class="row small-12 columns">
-                    <h3 class="symbol">DEEBUG</h3>
-                    <h3 class="price">$1338.00</h3>
-                    <div class="quote-actions">
-                      <button class="btn-sell alert button">Buy</button>
-                      <button class="btn-buy success button">Sell</button>
-                    </div>
-                  </div>
-                </li>
-                <li class="quote">
-                  <div class="row small-12 columns">
-                    <h3 class="symbol">DEEBUG</h3>
-                    <h3 class="price">$1338.00</h3>
-                    <div class="quote-actions">
-                      <button class="btn-sell alert button">Buy</button>
-                      <button class="btn-buy success button">Sell</button>
-                    </div>
-                  </div>
-                </li>
-                <li class="quote">
-                  <div class="row small-12 columns">
-                    <h3 class="symbol">DEEBUG</h3>
-                    <h3 class="price">$1338.00</h3>
-                    <div class="quote-actions">
-                      <button class="btn-sell alert button">Buy</button>
-                      <button class="btn-buy success button">Sell</button>
-                    </div>
-                  </div>
-                </li>
-                <li class="quote">
-                  <div class="row small-12 columns">
-                    <h3 class="symbol">DEEBUG</h3>
-                    <h3 class="price">$1338.00</h3>
-                    <div class="quote-actions">
-                      <button class="btn-sell alert button">Buy</button>
-                      <button class="btn-buy success button">Sell</button>
-                    </div>
-                  </div>
-                </li>
-
               </ul>
             </div>
           </div>
@@ -94,36 +33,6 @@
             <h2>Trade History</h2>
             <div class="trades-list-container">
               <ul id="trades" class="trades">
-                <li class="trade">
-                  <span>
-                    You bought QUOTE at $106.00
-                  </span>
-                </li>
-                <li class="trade">
-                  <span>
-                    You sold QUOTE at $213.00
-                  </span>
-                </li>
-                <li class="trade">
-                  <span>
-                    You bought QUOTE at $106.00
-                  </span>
-                </li>
-                <li class="trade">
-                  <span>
-                    You sold QUOTE at $213.00
-                  </span>
-                </li>
-                <li class="trade">
-                  <span>
-                    You bought QUOTE at $106.00
-                  </span>
-                </li>
-                <li class="trade">
-                  <span>
-                    You sold QUOTE at $213.00
-                  </span>
-                </li>
               </ul>
             </div>
           </div>
@@ -133,48 +42,13 @@
 
       <hr />
 
-      <div class="order-workspace row">
+      <div id="order-workspace" class="order-workspace row">
 
        <div class="columns large-8 small-12">
          <div class="orders-container columns large-10 large-offset-1">
-           <h2>Orders</h2>
+           <h2>Open Orders</h2>
            <div class="orders-list-container">
-             <ul class="orders">
-               <li class="order">
-                 <h3 class="symbol">MUNEY</h3>
-                 <div class="detail">
-                   <span class="action">buy</span> at <span class="price">$98.00</span>
-                 </div>
-                 <button class="cancel button secondary">Cancel</button>
-               </li>
-               <li class="order">
-                 <h3 class="symbol">MUNEY</h3>
-                 <div class="detail">
-                   <span class="action">buy</span> at <span class="price">$98.00</span>
-                 </div>
-                 <button class="cancel button secondary">Cancel</button>
-               </li>
-               <li class="order">
-                 <h3 class="symbol">MUNEY</h3>
-                 <div class="detail">
-                   <span class="action">buy</span> at <span class="price">$98.00</span>
-                 </div>
-                 <button class="cancel button secondary">Cancel</button>
-               </li>
-               <li class="order">
-                 <h3 class="symbol">MUNEY</h3>
-                 <div class="detail">
-                   <span class="action">buy</span> at <span class="price">$98.00</span>
-                 </div>
-                 <button class="cancel button secondary">Cancel</button>
-               </li>
-               <li class="order">
-                 <h3 class="symbol">MUNEY</h3>
-                 <div class="detail">
-                   <span class="action">buy</span> at <span class="price">$98.00</span>
-                 </div>
-                 <button class="cancel button secondary">Cancel</button>
-               </li>
+             <ul id="orders" class="orders">
              </ul>
            </div>
          </div>
@@ -182,26 +56,20 @@
 
        <div class="columns large-4 small-12 trade-column">
          <div class="order-entry-form columns small-10 small-offset-1">
-           <h3>Order Form</h3>
+           <h3>Order Entry Form</h3>
            <form>
              <label for="symbol">Symbol</label>
              <select name="symbol">
-               <option>
-                 MUNEY
-               </option>
-               <option>
-                 ABCDE
-               </option>
-               <option>
-                 YMCA
-               </option>
+               <!-- Option entries should be added here using JavaScript -->
              </select>
              <label for="price-target">Price</label>
-             <input type="number" name="price-target" />
+             <input type="number" name="price-target" step="0.10" min="0.00" placeholder="100.00" />
              <label>Action</label>
-             <button class="alert button">Buy</button>
-             <button class="success button">Sell</button>
+             <button class="btn-buy alert button">Buy</button>
+             <button class="btn-sell success button">Sell</button>
            </form>
+           <div class="form-errors">
+           </div>
          </div>
 
        </div>
@@ -222,12 +90,31 @@
         <h3 class="symbol"><%- symbol %></h3>
         <h3 class="price">$<%- price.toFixed(2) %></h3>
         <div class="quote-actions">
-          <button class="alert button">Buy</button>
-          <button class="success button">Sell</button>
+          <button class="btn-buy alert button">Buy</button>
+          <button class="btn-sell success button">Sell</button>
         </div>
       </div>
       <!-- </li> -->
     </script>
+
+    <script type="text/template" id="trade-template">
+      <li class="trade">
+        <span>
+          You <%- buy ? 'bought' : 'sold' %> <%- symbol %> at $<%- price.toFixed(2) %>
+        </span>
+      </li>
+    </script>
+
+    <script type="text/template" id="order-template">
+      <h3 class="symbol"><%- symbol %></h3>
+      <div class="detail">
+        <span class="action"><%- buy ? 'buy' : 'sell' %></span>
+        at
+        <span class="price">$<%- targetPrice.toFixed(2) %></span>
+      </div>
+      <button class="btn-cancel button secondary">Cancel</button>
+    </script>
+
     <script src="/app.bundle.js" charset="utf-8"></script>
   </body>
 </html>
