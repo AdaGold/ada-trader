@@ -33,7 +33,7 @@ This project uses the same structure as BackTREK and is based on our [backbone b
 |:------|:-----|:--------|
 | `Quote` | `src/models/quote.js` | This model represents an individual stock quote, and has attributes for:<br>• `symbol` - code name for the stock (e.g. AAPL)<br>• `price` - current price of the quote<br>You will add the ability to buy / sell a quote using custom functions. |
 | `QuoteList` | `src/collections/quote_list.js` | This collection represents all of the quotes available on the trading platform. |
-| `Simulator` | `src/models/simulator.js` | This model handles the logic for simulating stock market activity by randomly shifting the price for each quote up or down each second within a range of -1.00 and +1.00. You will need to connect it to your `QuoteList` instance in `src/app.js`. |
+| `Simulator` | `src/models/simulator.js` | This model handles the logic for simulating stock market activity by randomly shifting the price for each quote up or down each second within a range of -1.00 and +1.00. This model is already fully implemented. |
 
 # Project Requirements
 ## Wave 1 - Trading with Market Orders
