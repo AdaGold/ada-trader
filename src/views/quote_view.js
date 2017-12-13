@@ -6,6 +6,7 @@ const QuoteView = Backbone.View.extend({
 
   initialize(params) {
     this.template = params.template;
+    this.tradeTemplate = params.tradeTemplate;
     this.listenTo(this.model, "change", this.render);
   },
 
@@ -16,8 +17,17 @@ const QuoteView = Backbone.View.extend({
     return this;
   },
   events: {
-    'click button.btn-buy': function() {this.model.buy();},
-    'click button.btn-sell': function() {this.model.sell();},
+    'click button.btn-buy': function() {
+      this.model.buy();
+      // trigger custom event
+      this.trigger('showTrade', this);
+    },
+
+    'click button.btn-sell': function() {
+      this.model.sell();
+      // trigger custom event
+      this.trigger('showTrade', this);
+    },
   },
 
 });
