@@ -6,9 +6,13 @@ import _ from 'underscore';
 
 import Simulator from 'models/simulator';
 import QuoteList from 'collections/quote_list';
+import OrderList from 'collections/order_list';
 
 import QuoteView from './views/quote_view.js';
 import QuoteListView from './views/quote_list_view.js';
+
+import OrderView from './views/order_view.js';
+import OrderListView from './views/order_list_view.js';
 
 
 const quoteData = [
