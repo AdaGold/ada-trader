@@ -7,13 +7,13 @@ const Order = Backbone.Model.extend({
   },
   validate(attributes) {
     const errors = {};
-    console.log('*****************');
-    console.log(attributes.quote);
 
     if (attributes.buy && attributes.targetPrice >= attributes.quote.get('price')) {
-      errors['targetPrice'] = ["WORKING?"];
+      errors['targetPrice'] = ["Price is blank OR is greater than or equal to the current market price"];
     } else if (!attributes.buy && attributes.targetPrice <= attributes.quote.get('price')) {
-      errors['targetPrice'] = ["WORKING?"];
+      errors['targetPrice'] = ["Price is blank OR less than to the current market price"];
+    } else if (isNaN(attributes.targetPrice)) {
+      errors['targetPrice'] = ["Price must be a number."];
     }
 
     if ( Object.keys(errors).length > 0 ) {

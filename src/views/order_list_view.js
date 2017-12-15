@@ -59,8 +59,9 @@ const OrderListView = Backbone.View.extend({
 
     if (newOrder.isValid()) {
       this.model.add(newOrder);
+    } else {
+      this.updateStatusMessageFrom(newOrder.validationError);
     }
-
   },
 
   sellOrder: function(event) {
@@ -90,8 +91,20 @@ const OrderListView = Backbone.View.extend({
 
     if (newOrder.isValid()) {
       this.model.add(newOrder);
+    } else {
+      this.updateStatusMessageFrom(newOrder.validationError);
     }
-    // this.model.add(newOrder);
+  },
+
+  updateStatusMessageFrom(messageHash) {
+    const errorMessageElement = this.$('.form-errors');
+    errorMessageElement.empty();
+    _.each(messageHash, (messageType) => {
+      messageType.forEach((error) => {
+        errorMessageElement.append(`<p>${error}</p>`);
+      })
+    });
+    errorMessageElement.show();
   },
 
 });
