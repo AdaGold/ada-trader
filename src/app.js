@@ -14,6 +14,8 @@ import QuoteListView from './views/quote_list_view.js';
 import OrderView from './views/order_view.js';
 import OrderListView from './views/order_list_view.js';
 
+import Order from 'models/order';
+
 
 const quoteData = [
   {
@@ -37,6 +39,11 @@ const quoteData = [
 
 let quoteTemplate;
 const quotes = new QuoteList(quoteData);
+const orders = new OrderList();
+
+// orders.add(new Order({symbol: "HUMOR", targetPrice: 100.00, buy: true}));
+
+
 
 $(document).ready(function() {
 
@@ -51,8 +58,18 @@ $(document).ready(function() {
     el: 'main'
   });
 
+  const orderListView = new OrderListView({
+    model: orders,
+    template: _.template($('#order-template').html()),
+    quoteList: quotes,
+    el: 'main',
+  });
+
 
   quoteListView.render();
+
+  // why is this an issue?
+  orderListView.render();
 
   simulator.start();
 });
