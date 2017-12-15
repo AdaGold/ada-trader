@@ -6,19 +6,19 @@ import Order from '../models/order';
 const OrderListView = Backbone.View.extend({
   initialize(params) {
     this.template = params.template;
-    // this.orderTemplate = params.orderTemplate;
     this.listenTo(this.model,"update", this.render);
+    this.quoteList = params.quoteList
   },
 
   render(){
     this.$('#orders').empty();
     console.log("************");
     console.log(this.model);
+
     this.model.each((order) => {
       const orderView = new OrderView({
         model: order,
         template: this.template,
-        // template: this.template,
         tagName: 'li',
         className: 'order',
       });
@@ -30,25 +30,17 @@ const OrderListView = Backbone.View.extend({
   },
   events: {
     'click button.btn-buy': 'addOrder',
+    'click button.btn-sell': 'sellOrder',
   },
-  // addBuyOrder: function() {
-  //   console.log('ITS WORKING');
-  //   this.model.addBuyOrder();
-  //   this.trigger('showOrder', this);
-  // },
 
   addOrder: function(event) {
     event.preventDefault();
 
-    const orderData ={};
-      orderData['buy'] = true;
-    //
-    // ['symbol', 'target-Price'].forEach( (field) => {
-    //   const val = this.$(`select[name=${field}]`).val();
-    //   if (val != '') {
-    //     orderData[field] = val;
-    //   }
-    // });
+    const orderData ={
+      buy: true,
+      // symbol: this.$('select[name=symbol]').val(),
+      // num: parseFloat(this.$('input[name=price-target]').val()),
+    };
 
     const sym = this.$('select[name=symbol]').val();
     if (sym != '') {
@@ -56,23 +48,50 @@ const OrderListView = Backbone.View.extend({
     }
 
     const num = this.$('input[name=price-target]').val();
-    console.log(num);
+    // console.log(num);
     if (num != '') {
       orderData['targetPrice'] = parseFloat(num);
     }
 
+    orderData['quote'] = this.quoteList.find({symbol: orderData['symbol']})
 
     const newOrder = new Order(orderData);
-    console.log("NEW ORDER");
-    console.log(newOrder);
-    this.model.add(newOrder);
 
-    // if (newTask.isValid()) {
-    //   this.model.add(newTask);
-    //   this.updateStatusMessageWith(`New task added: ${newTask.get('task_name')}`);
-    // } else {
-    //   this.updateStatusMessageFrom(newTask.validationError);
-    // }
+    if (newOrder.isValid()) {
+      this.model.add(newOrder);
+    }
+
+  },
+
+  sellOrder: function(event) {
+    event.preventDefault();
+
+    const orderData ={
+      buy: false,
+      // symbol = this.$('select[name=symbol]').val(),
+      // num: parseFloat(this.$('input[name=price-target]').val()),
+    };
+    // orderData['buy'] = false;
+
+    const sym = this.$('select[name=symbol]').val();
+    if (sym != '') {
+      orderData['symbol'] = sym;
+    }
+
+    const num = this.$('input[name=price-target]').val();
+    // console.log(num);
+    if (num != '') {
+      orderData['targetPrice'] = parseFloat(num);
+    }
+
+    orderData['quote'] = this.quoteList.find({symbol: orderData['symbol']});
+
+    const newOrder = new Order(orderData);
+
+    if (newOrder.isValid()) {
+      this.model.add(newOrder);
+    }
+    // this.model.add(newOrder);
   },
 
 });
