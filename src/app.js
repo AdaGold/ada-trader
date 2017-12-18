@@ -44,7 +44,6 @@ const orders = new OrderList();
 // orders.add(new Order({symbol: "HUMOR", targetPrice: 100.00, buy: true}));
 
 
-
 $(document).ready(function() {
 
   const simulator = new Simulator({
@@ -65,10 +64,8 @@ $(document).ready(function() {
     el: 'main',
   });
 
-
   quoteListView.render();
 
-  // why is this an issue?
   orderListView.render();
 
   simulator.start();

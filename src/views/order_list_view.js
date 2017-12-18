@@ -12,8 +12,6 @@ const OrderListView = Backbone.View.extend({
 
   render(){
     this.$('#orders').empty();
-    console.log("************");
-    console.log(this.model);
 
     this.model.each((order) => {
       const orderView = new OrderView({
@@ -22,36 +20,25 @@ const OrderListView = Backbone.View.extend({
         tagName: 'li',
         className: 'order',
       });
-      this.listenTo(orderView, 'showOrder', this.addOrder);
+      // this.listenTo(orderView, 'showOrder', this.addBuyOrder);
 
       this.$('#orders').prepend(orderView.render().$el);
     });
     return this;
   },
   events: {
-    'click button.btn-buy': 'addOrder',
-    'click button.btn-sell': 'sellOrder',
+    'click button.btn-buy': 'addBuyOrder',
+    'click button.btn-sell': 'addSellOrder',
   },
 
-  addOrder: function(event) {
+  addBuyOrder: function(event) {
     event.preventDefault();
 
     const orderData ={
       buy: true,
-      // symbol: this.$('select[name=symbol]').val(),
-      // num: parseFloat(this.$('input[name=price-target]').val()),
+      symbol: this.$('select[name=symbol]').val(),
+      targetPrice: parseFloat(this.$('input[name=price-target]').val()),
     };
-
-    const sym = this.$('select[name=symbol]').val();
-    if (sym != '') {
-      orderData['symbol'] = sym;
-    }
-
-    const num = this.$('input[name=price-target]').val();
-    // console.log(num);
-    if (num != '') {
-      orderData['targetPrice'] = parseFloat(num);
-    }
 
     orderData['quote'] = this.quoteList.find({symbol: orderData['symbol']})
 
@@ -59,31 +46,20 @@ const OrderListView = Backbone.View.extend({
 
     if (newOrder.isValid()) {
       this.model.add(newOrder);
+      this.$('.form-errors').empty();
     } else {
       this.updateStatusMessageFrom(newOrder.validationError);
     }
   },
 
-  sellOrder: function(event) {
+  addSellOrder: function(event) {
     event.preventDefault();
 
     const orderData ={
       buy: false,
-      // symbol = this.$('select[name=symbol]').val(),
-      // num: parseFloat(this.$('input[name=price-target]').val()),
+      symbol: this.$('select[name=symbol]').val(),
+      targetPrice: parseFloat(this.$('input[name=price-target]').val()),
     };
-    // orderData['buy'] = false;
-
-    const sym = this.$('select[name=symbol]').val();
-    if (sym != '') {
-      orderData['symbol'] = sym;
-    }
-
-    const num = this.$('input[name=price-target]').val();
-    // console.log(num);
-    if (num != '') {
-      orderData['targetPrice'] = parseFloat(num);
-    }
 
     orderData['quote'] = this.quoteList.find({symbol: orderData['symbol']});
 
@@ -91,6 +67,7 @@ const OrderListView = Backbone.View.extend({
 
     if (newOrder.isValid()) {
       this.model.add(newOrder);
+      this.$('.form-errors').empty();
     } else {
       this.updateStatusMessageFrom(newOrder.validationError);
     }
