@@ -2,9 +2,9 @@
 Congratulations! You're submitting your assignment!
 
 ## Comprehension Questions
-| Question       | Answer         |
-| :------------- | :------------- |
-| How do Backbone Views help structure your code? | |
-| Did you use jQuery directly in your Views? How, and why? | |
-| What was an example of an event you triggered? Why did you need to trigger it? | |
-| In what was is unit testing in JavaScript similar to unit testing in Ruby? In what ways is it different? | |
+Question | Answer
+:------------- | :-------------
+How do Backbone Views help structure your code? | 
+Did you use jQuery directly in your Views? How, and why? | 
+What was an example of an event you triggered? Why did you need to trigger it? | 
+In what was is unit testing in JavaScript similar to unit testing in Ruby? In what ways is it different? | 
